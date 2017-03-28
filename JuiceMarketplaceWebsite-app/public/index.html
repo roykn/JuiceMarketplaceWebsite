@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html ng-app='dashboard'>
+
+<head>
+
+    <link rel="stylesheet" href="css/skeleton.css">
+
+    <link href="css/c3.css" rel="stylesheet" type="text/css" />
+    <link href="css/swiper.min.css" rel="stylesheet">
+    <link href="css/main.css" rel="stylesheet">
+
+    <script src="js/jquery.min.js"></script>
+    <script src="js/swiper.jquery.min.js"></script>
+    
+    <script src="js/underscore-min.js" charset="utf-8"></script>
+    <script src="js/d3.min.js" charset="utf-8"></script>
+    <script src="js/c3.min.js"></script>
+    <script src="js/angular.min.js"></script>
+    <script src="js/angular_c3_simple.js"></script>
+    <script src="js/moment.min.js"></script>
+    <script src="js/angular-moment.js"></script>
+
+
+    <!-- angular init -->
+    <script src="app/app.js"></script>
+
+    <!-- servcies -->
+    <script src="app/services/dashboard-data-service.js"></script>
+
+    <!-- controller -->
+    <script src="app/controller/dashboard-controller.js"></script>
+
+    <!-- diectives -->
+
+    <!-- other -->
+</head>
+
+<body ng-controller='DashboardController'>
+<div class="container">
+        <div class="swiper-container">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide"><img src="img/slide0.svg" /></div>
+            <div class="swiper-slide"><img src="img/slide1.svg" /></div> 
+            <div class="swiper-slide"><img src="img/slide2.svg" /></div>
+            <div class="swiper-slide"><img src="img/slide3.svg" /></div>
+            <div class="swiper-slide"><img src="img/slide4.svg" /></div>
+            <div class="swiper-slide"><img src="img/slide5.svg" /></div>
+            <div class="swiper-slide">
+            <div class="header">
+               <h2>IUNO Demonstrator</h2>
+                <h3 class="chartHeadline">Amount of mixed drinks during the last 5 hours: {{getactivatedlicensessince}} </h3>
+            </div>
+            <div class="diagram">
+                <h4>Favorite juices</h4>
+                <div c3-simple class="chart" id="donut" config="donut"></div>
+            </div>
+            <div class="diagram">
+                <h4>Top 10 drinks ever</h4>
+                <div c3-simple class="chart" id="topEver" config="topEver"></div>
+            </div>
+            <div class="diagram">
+                <h4>Top 10 drinks of today</h4>
+                <div c3-simple class="chart" id="topToday" config="topToday"></div>
+            </div>
+            <div class="diagram">
+                <h4>Histogram about workload over the day</h4>
+                <div c3-simple class="chart" id="dailyWorkload" config="dailyWorkload"></div>
+            </div> 
+                
+            </div>        
+
+
+        </div>
+        <!-- Add Pagination -->
+        <div class="swiper-pagination"></div>
+        <!-- Add Arrows -->
+
+    </div> 
+    </div>
+
+    <script>
+        $(document).ready(function () {
+            //initialize swiper when document ready  
+            var mySwiper = new Swiper('.swiper-container', {
+                pagination: '.swiper-pagination',
+                paginationClickable: true,
+                centeredSlides: true,
+                autoplay: 30000,
+                loop: false
+            });
+        });
+    </script>
+
+</body>
+
+</html>

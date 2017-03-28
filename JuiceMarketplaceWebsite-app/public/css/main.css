@@ -1,0 +1,51 @@
+@import 'fonts.css';
+
+html,
+body,
+.container {
+    padding: 0 0;
+    margin: 0 0;
+    background-color: white;
+}
+
+.column.right {
+    height: 100%;
+}
+
+.column.left {
+    border-right: 15px solid black;
+    background: #fff;
+}
+.header {
+    background-image: url('../img/bg_blue.jpg');
+    height: 120px;
+    padding:2em;
+}
+
+.swiper-container {
+    width: 98%;
+  
+
+}
+
+.swiper-slide {
+    margin-bottom: 35px;
+}
+
+.swiper-slide img{
+    width: 100%;
+}
+
+.chartHeadline {
+    position: middle;
+}
+
+.diagram{
+    width: 48%; 
+    padding: 1%;
+    float:left;
+    display: inline;
+    box-sizing: border-box;
+    overflow: hidden;
+    
+}
