@@ -215,23 +215,20 @@ angular
                 }, function (error) {
                     console.log(error);
                 });
-            }
+            };
 
             function getDistinctTechnologyData(data) {
                 var technologies = [];
-                var exists = false;
-                for (var i in data) {
-                    for (var j in technologies) {
-                        if (technologies[j] === data[i].technologydataname) {
-                            exists = true;
-                            break;
-                        }
+
+                for(var i in data) {
+                    if (technologies.indexOf(data[i].technologydataname) == -1) {
+                        technologies.push(data[i].technologydataname);
                     }
-                    if (!exists) {
-                        technologies.push(data[i].technologydataname)
+                    else {
+                        console.log("Duplicate:" + data[i]);
                     }
                 }
-                return technologies;
+               return technologies;
             }
 
             var getData = function () {
