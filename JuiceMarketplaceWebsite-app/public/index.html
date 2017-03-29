@@ -11,7 +11,7 @@
 
     <script src="js/jquery.min.js"></script>
     <script src="js/swiper.jquery.min.js"></script>
-    
+
     <script src="js/underscore-min.js" charset="utf-8"></script>
     <script src="js/d3.min.js" charset="utf-8"></script>
     <script src="js/c3.min.js"></script>
@@ -36,46 +36,83 @@
 </head>
 
 <body ng-controller='DashboardController'>
-<div class="container">
+    <div class="container">
         <div class="swiper-container">
-        <div class="swiper-wrapper">
-            <div class="swiper-slide"><img src="img/slide0.svg" /></div>
-            <div class="swiper-slide"><img src="img/slide1.svg" /></div> 
-            <div class="swiper-slide"><img src="img/slide2.svg" /></div>
-            <div class="swiper-slide"><img src="img/slide3.svg" /></div>
-            <div class="swiper-slide"><img src="img/slide4.svg" /></div>
-            <div class="swiper-slide"><img src="img/slide5.svg" /></div>
-            <div class="swiper-slide">
-            <div class="header">
-               <h2>IUNO Demonstrator</h2>
-                <h3 class="chartHeadline">Amount of mixed drinks during the last 5 hours: {{getactivatedlicensessince}} </h3>
-            </div>
-            <div class="diagram">
-                <h4>Favorite juices</h4>
-                <div c3-simple class="chart" id="donut" config="donut"></div>
-            </div>
-            <div class="diagram">
-                <h4>Top 10 drinks ever</h4>
-                <div c3-simple class="chart" id="topEver" config="topEver"></div>
-            </div>
-            <div class="diagram">
-                <h4>Top 10 drinks of today</h4>
-                <div c3-simple class="chart" id="topToday" config="topToday"></div>
-            </div>
-            <div class="diagram">
-                <h4>Histogram about workload over the day</h4>
-                <div c3-simple class="chart" id="dailyWorkload" config="dailyWorkload"></div>
-            </div> 
-                
-            </div>        
+            <div class="swiper-wrapper">
+                <div class="swiper-slide"><img src="img/slide0.svg" /></div>
+                <div class="swiper-slide">
+                    <div class="header">
+                        <h2>IUNO Demonstrator</h2>
+                        <h3 class="chartHeadline">Amount of mixed drinks during the last 5 hours: {{getactivatedlicensessince}} </h3>
+                    </div>
+                    <div class="diagram">
+                        <h4>Favorite juices</h4>
+                        <div c3-simple class="chart" id="donut" config="donut"></div>
+                    </div>
+                </div>
+                <div class="swiper-slide"><img src="img/slide1.svg" /></div>
+                <div class="swiper-slide">
+                    <div class="header">
+                        <h2>IUNO Demonstrator</h2>
+                        <h3 class="chartHeadline">Amount of mixed drinks during the last 5 hours: {{getactivatedlicensessince}} </h3>
+                    </div>
 
+                    <div class="diagram">
+                        <h4>Top 10 drinks ever</h4>
+                        <div c3-simple class="chart" id="topEver" config="topEver"></div>
+                    </div>
+                </div>
+                <div class="swiper-slide"><img src="img/slide2.svg" /></div>
+                <div class="swiper-slide">
+                    <div class="header">
+                        <h2>IUNO Demonstrator</h2>
+                        <h3 class="chartHeadline">Amount of mixed drinks during the last 5 hours: {{getactivatedlicensessince}} </h3>
+                    </div>
+                    <div class="diagram">
+                        <h4>Top 10 drinks of today</h4>
+                        <div c3-simple class="chart" id="topToday" config="topToday"></div>
+                    </div>
+                </div>
+                <div class="swiper-slide"><img src="img/slide3.svg" /></div>
+                <div class="swiper-slide">
+                    <div class="header">
+                        <h2>IUNO Demonstrator</h2>
+                        <h3 class="chartHeadline">Amount of mixed drinks during the last 5 hours: {{getactivatedlicensessince}} </h3>
+                    </div>
+                    <div class="diagram">
+                        <h4>Histogram about workload over the day</h4>
+                        <div c3-simple class="chart" id="dailyWorkload" config="dailyWorkload"></div>
+                    </div>
+                </div>
+                <div class="swiper-slide"><img src="img/slide4.svg" /></div>
+                <div class="swiper-slide">
+                    <div class="header">
+                        <h2>IUNO Demonstrator</h2>
+                        <h3 class="chartHeadline">Amount of mixed drinks during the last 5 hours: {{getactivatedlicensessince}} </h3>
+                    </div>
+                    <div class="diagram">
+                        <h4>Total revenue per hour</h4>
+                        <div c3-simple class="chart" id="dailyWorkload" config="dailyWorkload"></div>
+                    </div>
+                </div>
+                <div class="swiper-slide"><img src="img/slide5.svg" /></div>
+                <div class="swiper-slide">
+                    <div class="header">
+                        <h2>IUNO Demonstrator</h2>
+                        <h3 class="chartHeadline">Amount of mixed drinks during the last 5 hours: {{getactivatedlicensessince}} </h3>
+                    </div>
+                    <div class="diagram">
+                        <h4>Total revenue per day</h4>
+                        <div c3-simple class="chart" id="dailyWorkload" config="dailyWorkload"></div>
+                    </div>
+                </div>
+
+            </div>
+            <!-- Add Pagination -->
+            <div class="swiper-pagination"></div>
+            <!-- Add Arrows -->
 
         </div>
-        <!-- Add Pagination -->
-        <div class="swiper-pagination"></div>
-        <!-- Add Arrows -->
-
-    </div> 
     </div>
 
     <script>
