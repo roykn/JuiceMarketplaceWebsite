@@ -1,7 +1,7 @@
 /*-- Chart --*/
 
 .c3 svg {
-  font: 10px sans-serif;
+  font: 16px sans-serif;
 }
 .c3 path, .c3 line {
   fill: none;
@@ -129,7 +129,7 @@
 /*-- Legend --*/
 
 .c3-legend-item {
-  font-size: 12px;
+  font-size: 16px;
 }
 
 .c3-legend-background {
