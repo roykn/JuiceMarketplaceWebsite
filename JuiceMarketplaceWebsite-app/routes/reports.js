@@ -41,4 +41,17 @@ router.get('/workload', function (req, res, next) {
     })
 });
 
+router.get('/revenue', function (req, res, next) {
+    marketplaceCore.getRevenueSince(req.query['sinceDate'], req.query['time'], function (err, data) {
+        if (err) {
+            res.status(500);
+            res.send('Error when requesting data from the marketplace core');
+
+            return;
+        }
+
+        res.json(data);
+    })
+});
+
 module.exports = router;

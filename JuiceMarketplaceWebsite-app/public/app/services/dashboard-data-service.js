@@ -71,11 +71,41 @@ angular.module('dashboard').factory('DashboardDataService', ['$q', '$http', 'mom
     }
 
 
+    function getRevenuePerHour() {
+        var defer = $q.defer();
+        $http({
+            method: 'GET',
+            url: '/reports/revenue?sinceDate=' +  moment().startOf('day').format('YYYY-MM-DD HH:mm:ss')
+        }).then(function(result) {
+            defer.resolve(result);
+        }, function(error) {
+            defer.reject(error);
+        });
+        return defer.promise;
+    }
+
+
+    function getRevenuePerDay() {
+        var defer = $q.defer();
+        $http({
+            method: 'GET',
+            url: '/reports/revenue?sinceDate=' +  moment().subtract(7, 'days').format('YYYY-MM-DD HH:mm:ss') + '&time=day'
+        }).then(function(result) {
+            defer.resolve(result);
+        }, function(error) {
+            defer.reject(error);
+        });
+        return defer.promise;
+    }
+
+
     return {
         getDrinksByHours: getDrinksByHours,
         getTopDrinksEver: getTopDrinksEver,
         getTopDrinksOfToday: getTopDrinksOfToday,
         getFavoriteJuicesSince: getFavoriteJuices,
-        getWorkloadSince: getWorkload
+        getWorkloadSince: getWorkload,
+        getRevenuePerHour: getRevenuePerHour,
+        getRevenuePerDay: getRevenuePerDay
     };
 }]);

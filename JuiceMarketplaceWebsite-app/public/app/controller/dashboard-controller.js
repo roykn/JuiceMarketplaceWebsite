@@ -61,6 +61,7 @@ angular
                 },
                 axis: {
                     x: {
+                        label: 'Hour',
                         type: 'category',
                         categories: [
                             '8-9',
@@ -78,6 +79,9 @@ angular
                             '20-21',
                             '21-22'
                         ]
+                    },
+                    y: {
+                        label: 'Amount'
                     }
                 },
                 legend: {
@@ -90,6 +94,65 @@ angular
                     y: {
                         show: true
                     }
+                }
+            };
+
+            $scope.revenuePerHour = {
+                data: {
+                    columns: [],
+                    types: {
+                        data: 'area-step'
+                    }
+                },
+                axis: {
+                    x: {
+                        label: 'Hour',
+                        type: 'category',
+                        categories: [
+                            '8-9',
+                            '9-10',
+                            '10-11',
+                            '11-12',
+                            '12-13',
+                            '13-14',
+                            '14-15',
+                            '15-16',
+                            '16-17',
+                            '17-18',
+                            '18-19',
+                            '19-20',
+                            '20-21',
+                            '21-22'
+                        ]
+                    },
+                    y: {
+                        label: 'Revenue'
+                    }
+                },
+                legend: {
+                    show: false
+                }
+            };
+
+            $scope.revenuePerDay = {
+                data: {
+                    columns: [],
+                    types: {
+                        data: 'area'
+                    }
+                },
+                axis: {
+                    x: {
+                        label: 'Day',
+                        type: 'category',
+                        categories: []
+                    },
+                    y: {
+                        label: 'Revenue'
+                    }
+                },
+                legend: {
+                    show: false
                 }
             };
 
@@ -173,10 +236,10 @@ angular
 
             $scope.getWorkloadSince = function () {
                 dashboardDataService.getWorkloadSince().then(function (data) {
-                    
+
                     $scope.dailyWorkload.data.columns = [];
                     $scope.dailyWorkload.data.groups = [];
-                    
+
                     var drinks = getDistinctTechnologyData(data.data);
                     var columns = [];
 
@@ -186,11 +249,11 @@ angular
 
                     for (var i = 0; i <= 13; i++) {
                         columns.forEach(function (column) {
-                             column.push(0);
+                            column.push(0);
                         }, this);
 
                         data.data.forEach(function (technologyData) {
-                            if (technologyData.dayhour == i+8) {
+                            if (technologyData.dayhour == i + 8) {
                                 columns.forEach(function (column) {
                                     if (column[0] === technologyData.technologydataname) {
                                         column[i + 1] += technologyData.amount;
@@ -208,18 +271,57 @@ angular
                 });
             }
 
+            $scope.getRevenuePerHour = function () {
+                dashboardDataService.getRevenuePerHour().then(function (data) {
+                    $scope.revenuePerHour.data.columns = [];
+
+                    var columns = [];
+                    columns.push(new Array('data'));
+
+                    for (var i = 0; i <= 13; i++) {
+                        columns[0].push(0);
+                        data.data.forEach(function (revenueData) {
+                            if (revenueData.hour == i + 8) {
+                                columns[0][i + 1] += revenueData.revenue;
+                            }
+                        }, this);
+                    }
+
+                    $scope.revenuePerHour.data.columns = columns;
+                });
+            }
+
+            $scope.getRevenuePerDay = function () {
+                dashboardDataService.getRevenuePerDay().then(function (data) {
+                    $scope.revenuePerDay.data.columns = [];
+                    $scope.revenuePerDay.axis.x.categories = [];
+
+                    var columns = [];
+                    var categories = [];
+
+                    columns.push(new Array('data'));
+
+                    var i = 1;
+                    data.data.forEach(function (revenueData) {
+                        columns[0][i] = revenueData.revenue;
+                        categories[i-1] = moment(revenueData.date).format('YYYY-MM-DD');
+                        i++;
+                    }, this);
+
+                    $scope.revenuePerDay.data.columns = columns;
+                    $scope.revenuePerDay.axis.x.categories = categories;
+                });
+            }
+
             function getDistinctTechnologyData(data) {
                 var technologies = [];
-                var exists = false;
+
                 for (var i in data) {
-                    for (var j in technologies) {
-                        if (technologies[j] === data[i].technologydataname) {
-                            exists = true;
-                            break;
-                        }
+                    if (technologies.indexOf(data[i].technologydataname) == -1) {
+                        technologies.push(data[i].technologydataname);
                     }
-                    if (!exists) {
-                        technologies.push(data[i].technologydataname)
+                    else {
+                        console.log("Duplicate:" + data[i]);
                     }
                 }
                 return technologies;
@@ -231,6 +333,8 @@ angular
                 $scope.getTopDrinksEver();
                 $scope.getFavoriteJuicesSince();
                 $scope.getWorkloadSince();
+                $scope.getRevenuePerHour();
+                $scope.getRevenuePerDay();
                 nextLoad();
             }
 
