@@ -269,7 +269,7 @@ angular
                 }, function (error) {
                     console.log(error);
                 });
-            }
+            };
 
             $scope.getRevenuePerHour = function () {
                 dashboardDataService.getRevenuePerHour().then(function (data) {
@@ -316,7 +316,7 @@ angular
             function getDistinctTechnologyData(data) {
                 var technologies = [];
 
-                for (var i in data) {
+                for(var i in data) {
                     if (technologies.indexOf(data[i].technologydataname) == -1) {
                         technologies.push(data[i].technologydataname);
                     }
@@ -324,7 +324,7 @@ angular
                         console.log("Duplicate:" + data[i]);
                     }
                 }
-                return technologies;
+               return technologies;
             }
 
             var getData = function () {
