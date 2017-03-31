@@ -75,7 +75,7 @@ angular.module('dashboard').factory('DashboardDataService', ['$q', '$http', 'mom
         var defer = $q.defer();
         $http({
             method: 'GET',
-            url: '/reports/revenue?sinceDate=' +  moment().startOf('day').format('YYYY-MM-DD HH:mm:ss')
+            url: '/reports/revenue?sinceDate=' +  moment().startOf('day').format('YYYY-MM-DD HH:mm:ss') + '&time=hour'
         }).then(function(result) {
             defer.resolve(result);
         }, function(error) {
